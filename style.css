@@ -104,6 +104,9 @@ body {
 	background-color: blue;
 	color: white;
 }
+.numbers .math-symbol:hover {
+	background-color: blue;
+}
 
 .math-symbol {
 	background-color: rgb(255, 255, 255);
