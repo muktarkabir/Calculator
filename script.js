@@ -7,6 +7,19 @@ const zeroButton = document.querySelector(".zero button");
 const decimalPointButton = document.querySelector(".decimal-point button");
 const equalSignButton = document.querySelector(".equal-sign button");
 
+clearButton.addEventListener("click", () => {
+	display.textContent = 0;
+});
+
+deleteButton.addEventListener("click", () => {
+	if (display.textContent.length > 1) {
+		display.textContent = display.textContent.slice(0, -1);
+	}
+	if (display.textContent.length == 1) {
+		display.textContent = "0";
+	}
+});
+
 zeroButton.addEventListener("click", () => {
 	if (display.textContent == 0 && display.textContent.length == 1) {
 	} else {
@@ -19,10 +32,6 @@ decimalPointButton.addEventListener("click", () => {
 	} else {
 		display.textContent += decimalPointButton.textContent;
 	}
-});
-
-clearButton.addEventListener("click", () => {
-	display.textContent = 0;
 });
 
 numberDivButtons.forEach((button) => {
