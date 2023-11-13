@@ -1,20 +1,36 @@
 const display = document.querySelector(".input-output");
-display.textContent = "";
-
 const clearButton = document.querySelector(".c");
+const deleteButton = document.querySelector(".d");
+const numberDiv = document.querySelector(".numbers");
+const numberDivButtons = numberDiv.querySelectorAll("button");
+const symbolsDivButtons = document.querySelectorAll(".symbols button");
+const zeroButton = document.querySelector(".zero button");
+const decimalPointButton = document.querySelector(".decimal-point button");
+const equalsSignButton = document.querySelector(".equals-sign button");
+
+zeroButton.addEventListener("click", () => {
+	display.textContent += 0;
+});
+
+decimalPointButton.addEventListener("click", () => {
+	display.textContent += decimalPointButton.textContent;
+});
 
 clearButton.addEventListener("click", () => {
 	display.textContent = "";
 });
-const deleteButton = document.querySelector(".d");
-
-const numberDiv = document.querySelector(".numbers");
-const numberDivButtons = numberDiv.querySelectorAll("button");
 
 numberDivButtons.forEach((button) => {
 	button.addEventListener("click", () => {
 		let enteredNum = button.textContent;
 		display.textContent += enteredNum;
+	});
+});
+
+symbolsDivButtons.forEach((button) => {
+	button.addEventListener("click", () => {
+		let enteredSymbol = button.textContent;
+		display.textContent += enteredSymbol;
 	});
 });
 
