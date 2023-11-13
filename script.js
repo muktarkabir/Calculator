@@ -16,21 +16,7 @@ deleteButton.addEventListener("click", () => {
 		display.textContent = display.textContent.slice(0, -1);
 	}
 	if (display.textContent.length == 1) {
-		display.textContent = "0";
-	}
-});
-
-zeroButton.addEventListener("click", () => {
-	if (display.textContent == 0 && display.textContent.length == 1) {
-	} else {
-		display.textContent += 0;
-	}
-});
-
-decimalPointButton.addEventListener("click", () => {
-	if (display.textContent.includes(".")) {
-	} else {
-		display.textContent += decimalPointButton.textContent;
+		display.textContent = 0;
 	}
 });
 
@@ -43,6 +29,19 @@ numberDivButtons.forEach((button) => {
 			display.textContent += enteredNum;
 		}
 	});
+});
+
+zeroButton.addEventListener("click", () => {
+	if (display.textContent == 0 && display.textContent.length == 1) {
+	} else {
+		display.textContent += 0;
+	}
+});
+decimalPointButton.addEventListener("click", () => {
+	if (display.textContent.includes(".")) {
+	} else {
+		display.textContent += decimalPointButton.textContent;
+	}
 });
 
 const addition = function (a, b) {
