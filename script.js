@@ -3,7 +3,6 @@ const clearButton = document.querySelector(".c");
 const deleteButton = document.querySelector(".d");
 const numberDiv = document.querySelector(".numbers");
 const numberDivButtons = numberDiv.querySelectorAll("button");
-const symbolsDivButtons = document.querySelectorAll(".symbols button");
 const zeroButton = document.querySelector(".zero button");
 const decimalPointButton = document.querySelector(".decimal-point button");
 const equalsSignButton = document.querySelector(".equals-sign button");
@@ -17,20 +16,17 @@ decimalPointButton.addEventListener("click", () => {
 });
 
 clearButton.addEventListener("click", () => {
-	display.textContent = "";
+	display.textContent = 0;
 });
 
 numberDivButtons.forEach((button) => {
 	button.addEventListener("click", () => {
 		let enteredNum = button.textContent;
-		display.textContent += enteredNum;
-	});
-});
-
-symbolsDivButtons.forEach((button) => {
-	button.addEventListener("click", () => {
-		let enteredSymbol = button.textContent;
-		display.textContent += enteredSymbol;
+		if (display.textContent == 0) {
+			display.textContent = enteredNum;
+		} else {
+			display.textContent += enteredNum;
+		}
 	});
 });
 
