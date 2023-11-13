@@ -1,25 +1,29 @@
+const display = document.querySelector(".input-output");
+display.textContent = "2332445";
+
+const clearButton = document.querySelector(".c");
+clearButton.addEventListener("click", () => {
+	display.textContent = "";
+});
+const deleteButton = document.querySelector(".d");
+
 const addition = function (a, b) {
 	return a + b;
 };
-
-console.log(addition(2.5, 2));
 
 const subtraction = function (a, b) {
 	return a - b;
 };
 
-console.log(subtraction(2, 3));
-
 const division = function (a, b) {
 	return a / b;
 };
-console.log(division(2, 3));
 
 const multiplication = function (a, b) {
 	return a * b;
 };
 
-console.log(multiplication(100, 34));
+let firstNum, operand, secondNum;
 
 function operate(firstNum, operand, secondNum) {
 	return operand(firstNum, secondNum);
