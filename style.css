@@ -45,15 +45,6 @@ body {
 	flex-wrap: wrap;
 }
 
-.symbols {
-	height: 320px;
-	width: 80px;
-	display: flex;
-	flex-wrap: wrap;
-}
-.symbols > button {
-	width: 80px;
-}
 .clear-delete {
 	width: 380px;
 	height: 60px;
@@ -82,16 +73,17 @@ body {
 
 .numbers-symbols {
 	display: flex;
+	flex-wrap: wrap;
 }
 .numbers {
 	width: 300px;
-	height: 320px;
+	height: 240px;
 	display: flex;
 	justify-content: flex-start;
 	flex-wrap: wrap;
 }
 .numbers > button {
-	width: 100px;
+	width: 98px;
 	height: 80px;
 	background-color: rgb(255, 255, 255);
 	font-size: 22px;
@@ -100,14 +92,15 @@ body {
 	background-color: rgb(216, 216, 214);
 }
 
-.numbers .math-symbol {
-	background-color: blue;
-	color: white;
+.symbols {
+	height: 240px;
+	width: 80px;
+	display: flex;
+	flex-wrap: wrap;
 }
-.numbers .math-symbol:hover {
-	background-color: blue;
+.symbols > button {
+	width: 80px;
 }
-
 .math-symbol {
 	background-color: rgb(255, 255, 255);
 	font-size: 22px;
@@ -116,6 +109,47 @@ body {
 .math-symbol:hover {
 	background-color: rgb(216, 216, 214);
 }
+
+.annoying {
+	width: 380px;
+	height: 80px;
+	display: flex;
+}
+.annoying button {
+	background-color: rgb(255, 255, 255);
+	font-size: 22px;
+}
+.annoying button:hover {
+	background-color: rgb(216, 216, 214);
+}
+
+.zero {
+	width: 100px;
+	height: 80px;
+}
+.zero > button {
+	width: 99px;
+	height: 78px;
+}
+
+.decimal-point {
+	width: 100px;
+	height: 80px;
+}
+
+.decimal-point > button {
+	width: 99px;
+	height: 78px;
+}
+
+.annoying :nth-child(3) button {
+	width: 185px;
+	height: 80px;
+	background-color: blue;
+	font-size: 22px;
+	color: white;
+}
+
 button {
 	border: none;
 	border-radius: 10px;
