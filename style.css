@@ -18,6 +18,7 @@ body {
 	align-items: center;
 	border-radius: 10px;
 	color: black;
+	border: 1px solid blue;
 }
 .input-output {
 	width: 380px;
@@ -29,20 +30,23 @@ body {
 	justify-content: flex-end;
 	align-items: end;
 	font-size: 50px;
-	padding-right: 5px;
+	padding-right: 8px;
+	overflow: hidden;
 	font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
 		"Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+	border: 1px solid blue;
 }
 .controls {
 	background-color: rgba(255, 255, 255, 0.801);
 	height: 380px;
 	width: 380px;
-	border-radius: 6px;
+	border-radius: 8px;
 	margin-top: 10px;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	flex-wrap: wrap;
+	border: 1px solid blue;
 }
 
 .clear-delete {
@@ -69,6 +73,7 @@ body {
 	font-size: 25px;
 	color: blue;
 	font-weight: bold;
+	width: 188px;
 }
 
 .numbers-symbols {
@@ -94,7 +99,7 @@ body {
 
 .symbols {
 	height: 240px;
-	width: 80px;
+	width: 78px;
 	display: flex;
 	flex-wrap: wrap;
 }
@@ -142,9 +147,13 @@ body {
 	height: 78px;
 }
 
+.annoying :nth-child(3) {
+	background-color: blue;
+	border-radius: 8px;
+}
 .annoying :nth-child(3) button {
-	width: 181px;
-	height: 80px;
+	width: 179px;
+	height: 79px;
 	background-color: blue;
 	font-size: 22px;
 	color: white;
