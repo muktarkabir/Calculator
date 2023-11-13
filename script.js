@@ -5,6 +5,10 @@ const numberDiv = document.querySelector(".numbers");
 const numberDivButtons = numberDiv.querySelectorAll("button");
 const zeroButton = document.querySelector(".zero button");
 const decimalPointButton = document.querySelector(".decimal-point button");
+const plusButton = document.querySelector(".plus");
+const minusButton = document.querySelector(".minus");
+const timesButton = document.querySelector(".times");
+const divideButton = document.querySelector(".divide");
 const equalSignButton = document.querySelector(".equal-sign button");
 
 clearButton.addEventListener("click", () => {
