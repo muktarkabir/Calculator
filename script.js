@@ -98,5 +98,5 @@ divideButton.addEventListener("click", () => {
 	operand = division;
 });
 
-let results = operate(7, multiplication, 900);
-test.textContent = results.toString(16);
+let testresults = operate(7, multiplication, 900);
+test.textContent = testresults.toString(16);
