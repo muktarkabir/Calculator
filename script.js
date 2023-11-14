@@ -95,7 +95,11 @@ zeroButton.addEventListener("click", () => {
 		} else if (secondNumber.boolean == true) {
 			theInput2 += 0;
 		}
-		console.log(display.textContent);
+		if (firstNumber.boolean == false && secondNumber.boolean == false) {
+			display.textContent = display.textContent.replace(display.textContent, 0);
+			secondNumber.boolean = true;
+			console.log(display.textContent);
+		}
 	}
 });
 
