@@ -113,19 +113,15 @@ decimalPointButton.addEventListener("click", () => {
 const addition = function (a, b) {
 	return a + b;
 };
-
 const subtraction = function (a, b) {
 	return a - b;
 };
-
 const division = function (a, b) {
 	return a / b;
 };
-
 const multiplication = function (a, b) {
 	return a * b;
 };
-
 function operate(a, operand, b) {
 	return operand(a, b);
 }
@@ -158,13 +154,15 @@ divideButton.addEventListener("click", () => {
 equalSignButton.addEventListener("click", () => {
 	if (firstNumber.boolean == false && secondNumber.boolean == true) {
 		secondNumber.value = Number(theInput2);
-		if (operand == division && secondNumber.value == 0) {
-			display.textContent = "we dont do that here";
-		} else {
-			results.output = operate(firstNumber.value, operand, secondNumber.value);
-			display.textContent = results.output;
-			console.log(results.output);
+		results.output = operate(firstNumber.value, operand, secondNumber.value);
+		let displayed = results.output.toString();
+		console.log(displayed);
+		console.log(results.output.toString().length, typeof results.output);
+		if (displayed.length > 13) {
+			displayed = displayed.slice(0, 13);
 		}
+		display.textContent = displayed;
+		console.log(results.output);
 	}
 });
 
