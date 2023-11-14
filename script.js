@@ -13,13 +13,14 @@ const equalSignButton = document.querySelector(".equal-sign > button");
 const test = document.querySelector("h2");
 
 let theInput = 0;
-
 let theInput2 = 0;
 
+let results = { output: 0, boolean: true };
 let firstNumber = { value: 0, boolean: true };
-let operand;
 let secondNumber = { value: 0, boolean: false };
 let regex = /[0-9]\d+/;
+
+let operand;
 
 console.log(firstNumber.value);
 
@@ -27,6 +28,10 @@ clearButton.addEventListener("click", () => {
 	display.textContent = 0;
 	theInput = 0;
 	theInput2 = 0;
+	results.output = 0;
+	results.boolean = true;
+	firstNumber.boolean = true;
+	secondNumber.boolean = false;
 	firstNumber.value = 0;
 	secondNumber.value = 0;
 });
@@ -70,24 +75,25 @@ numberDivButtons.forEach((button) => {
 			console.log(display.textContent);
 		}
 		if (firstNumber.boolean == false && secondNumber.boolean == false) {
-			display.textContent = display.textContent.replace(regex, enteredNumber);
+			display.textContent = display.textContent.replace(
+				display.textContent,
+				enteredNumber
+			);
 			secondNumber.boolean = true;
 		}
 	});
 });
 
-console.log(firstNumber == Number(theInput));
-
 zeroButton.addEventListener("click", () => {
 	if (display.textContent == 0 && display.textContent.length == 1) {
 	} else {
 		display.textContent += 0;
-		theInput += 0;
+		if (firstNumber.boolean == true) {
+			theInput += 0;
+		} else if (secondNumber.boolean == true) {
+			theInput2 += 0;
+		}
 		console.log(display.textContent);
-	}
-	if (firstNumber.boolean == false && secondNumber.boolean == false) {
-		display.textContent = display.textContent.replace(regex, "0");
-		secondNumber.boolean = true;
 	}
 });
 
@@ -95,13 +101,13 @@ decimalPointButton.addEventListener("click", () => {
 	if (display.textContent.includes(".")) {
 	} else {
 		display.textContent += ".";
-		theInput += ".";
+		if (firstNumber.boolean == true) {
+			theInput += ".";
+		} else if (secondNumber.boolean == true) {
+			theInput2 += ".";
+		}
 		console.log(display.textContent);
 	}
-	// if (firstNumber.boolean == false && secondNumber.boolean == false) {
-	// 	display.textContent = display.textContent.replace(regex, "0.");
-	// 	secondNumber.boolean = true;
-	// }
 });
 
 const addition = function (a, b) {
@@ -132,23 +138,33 @@ plusButton.addEventListener("click", () => {
 });
 
 minusButton.addEventListener("click", () => {
+	firstNumber.value = Number(theInput);
+	firstNumber.boolean = false;
 	operand = subtraction;
 });
 
 timesButton.addEventListener("click", () => {
+	firstNumber.value = Number(theInput);
+	firstNumber.boolean = false;
 	operand = multiplication;
 });
 
 divideButton.addEventListener("click", () => {
+	firstNumber.value = Number(theInput);
+	firstNumber.boolean = false;
 	operand = division;
 });
 
 equalSignButton.addEventListener("click", () => {
 	if (firstNumber.boolean == false && secondNumber.boolean == true) {
 		secondNumber.value = Number(theInput2);
-		let results = operate(firstNumber.value, operand, secondNumber.value);
-		display.textContent = results;
-		console.log(results);
+		if (operand == division && secondNumber.value == 0) {
+			display.textContent = "we dont do that here";
+		} else {
+			results.output = operate(firstNumber.value, operand, secondNumber.value);
+			display.textContent = results.output;
+			console.log(results.output);
+		}
 	}
 });
 
