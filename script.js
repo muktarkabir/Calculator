@@ -18,11 +18,7 @@ let theInput2 = 0;
 let results = { output: 0, boolean: true };
 let firstNumber = { value: 0, boolean: true };
 let secondNumber = { value: 0, boolean: false };
-let regex = /[0-9]\d+/;
-
 let operand;
-
-console.log(firstNumber.value);
 
 clearButton.addEventListener("click", () => {
 	display.textContent = 0;
@@ -41,7 +37,6 @@ deleteButton.addEventListener("click", () => {
 		display.textContent = 0;
 		theInput = 0;
 		theInput2 = 0;
-		console.log(display.textContent);
 	} else if (display.textContent.length > 1) {
 		display.textContent = display.textContent.slice(0, -1);
 		if (firstNumber.boolean == true) {
@@ -49,8 +44,6 @@ deleteButton.addEventListener("click", () => {
 		} else if (firstNumber.boolean == false) {
 			theInput2 = theInput2.slice(0, -1);
 		}
-
-		console.log(display.textContent);
 	}
 });
 
@@ -65,7 +58,6 @@ numberDivButtons.forEach((button) => {
 				} else if (firstNumber.boolean == false) {
 					theInput2 = enteredNumber;
 				}
-				console.log(display.textContent);
 			} else {
 				display.textContent += enteredNumber;
 				if (firstNumber.boolean == true) {
@@ -73,7 +65,6 @@ numberDivButtons.forEach((button) => {
 				} else if (firstNumber.boolean == false) {
 					theInput2 += enteredNumber;
 				}
-				console.log(display.textContent);
 			}
 			if (firstNumber.boolean == false && secondNumber.boolean == false) {
 				display.textContent = display.textContent.replace(
@@ -98,7 +89,6 @@ zeroButton.addEventListener("click", () => {
 		if (firstNumber.boolean == false && secondNumber.boolean == false) {
 			display.textContent = display.textContent.replace(display.textContent, 0);
 			secondNumber.boolean = true;
-			console.log(display.textContent);
 		}
 	}
 });
@@ -112,7 +102,6 @@ decimalPointButton.addEventListener("click", () => {
 		} else if (secondNumber.boolean == true) {
 			theInput2 += ".";
 		}
-		console.log(display.textContent);
 	}
 });
 
@@ -136,7 +125,6 @@ plusButton.addEventListener("click", () => {
 	firstNumber.value = Number(theInput);
 	firstNumber.boolean = false;
 	operand = addition;
-	console.log(firstNumber);
 });
 
 minusButton.addEventListener("click", () => {
@@ -162,13 +150,10 @@ equalSignButton.addEventListener("click", () => {
 		secondNumber.value = Number(theInput2);
 		results.output = operate(firstNumber.value, operand, secondNumber.value);
 		let displayed = results.output.toString();
-		console.log(displayed);
-		console.log(results.output.toString().length, typeof results.output);
 		if (displayed.length > 13) {
 			displayed = displayed.slice(0, 13);
 		}
 		display.textContent = displayed;
-		console.log(results.output);
 	}
 });
 
