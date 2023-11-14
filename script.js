@@ -14,9 +14,11 @@ const test = document.querySelector("h2");
 
 let theInput = 0;
 
-let firstNumber = { value: 0, boolean: true },
-	operand,
-	secondNumber = { value: 0, boolean: false };
+let theInput2 = 0;
+
+let firstNumber = { value: 0, boolean: true };
+let operand;
+let secondNumber = { value: 0, boolean: false };
 let regex = /[0-9]\d+/;
 
 console.log(firstNumber.value);
@@ -24,16 +26,25 @@ console.log(firstNumber.value);
 clearButton.addEventListener("click", () => {
 	display.textContent = 0;
 	theInput = 0;
+	theInput2 = 0;
+	firstNumber.value = 0;
+	secondNumber.value = 0;
 });
 
 deleteButton.addEventListener("click", () => {
 	if (display.textContent.length == 1) {
 		display.textContent = 0;
 		theInput = 0;
+		theInput2 = 0;
 		console.log(display.textContent);
 	} else if (display.textContent.length > 1) {
 		display.textContent = display.textContent.slice(0, -1);
-		theInput = theInput.slice(0, -1);
+		if (firstNumber.boolean == true) {
+			theInput = theInput.slice(0, -1);
+		} else if (firstNumber.boolean == false) {
+			theInput2 = theInput2.slice(0, -1);
+		}
+
 		console.log(display.textContent);
 	}
 });
@@ -43,11 +54,19 @@ numberDivButtons.forEach((button) => {
 		let enteredNumber = button.textContent;
 		if (display.textContent == 0 && display.textContent.length == 1) {
 			display.textContent = enteredNumber;
-			theInput = enteredNumber;
+			if (firstNumber.boolean == true) {
+				theInput = enteredNumber;
+			} else if (firstNumber.boolean == false) {
+				theInput2 = enteredNumber;
+			}
 			console.log(display.textContent);
 		} else {
 			display.textContent += enteredNumber;
-			theInput += enteredNumber;
+			if (firstNumber.boolean == true) {
+				theInput += enteredNumber;
+			} else if (firstNumber.boolean == false) {
+				theInput2 += enteredNumber;
+			}
 			console.log(display.textContent);
 		}
 		if (firstNumber.boolean == false && secondNumber.boolean == false) {
@@ -66,6 +85,10 @@ zeroButton.addEventListener("click", () => {
 		theInput += 0;
 		console.log(display.textContent);
 	}
+	if (firstNumber.boolean == false && secondNumber.boolean == false) {
+		display.textContent = display.textContent.replace(regex, "0");
+		secondNumber.boolean = true;
+	}
 });
 
 decimalPointButton.addEventListener("click", () => {
@@ -75,6 +98,10 @@ decimalPointButton.addEventListener("click", () => {
 		theInput += ".";
 		console.log(display.textContent);
 	}
+	// if (firstNumber.boolean == false && secondNumber.boolean == false) {
+	// 	display.textContent = display.textContent.replace(regex, "0.");
+	// 	secondNumber.boolean = true;
+	// }
 });
 
 const addition = function (a, b) {
@@ -93,8 +120,8 @@ const multiplication = function (a, b) {
 	return a * b;
 };
 
-function operate(firstNumber, operand, secondNumber) {
-	return operand(firstNumber, secondNumber);
+function operate(a, operand, b) {
+	return operand(a, b);
 }
 
 plusButton.addEventListener("click", () => {
@@ -114,6 +141,15 @@ timesButton.addEventListener("click", () => {
 
 divideButton.addEventListener("click", () => {
 	operand = division;
+});
+
+equalSignButton.addEventListener("click", () => {
+	if (firstNumber.boolean == false && secondNumber.boolean == true) {
+		secondNumber.value = Number(theInput2);
+		let results = operate(firstNumber.value, operand, secondNumber.value);
+		display.textContent = results;
+		console.log(results);
+	}
 });
 
 let testresults = operate(7, multiplication, 900);
