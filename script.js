@@ -56,37 +56,39 @@ deleteButton.addEventListener("click", () => {
 
 numberDivButtons.forEach((button) => {
 	button.addEventListener("click", () => {
-		let enteredNumber = button.textContent;
-		if (display.textContent == 0 && display.textContent.length == 1) {
-			display.textContent = enteredNumber;
-			if (firstNumber.boolean == true) {
-				theInput = enteredNumber;
-			} else if (firstNumber.boolean == false) {
-				theInput2 = enteredNumber;
+		if (display.textContent.length < 13) {
+			let enteredNumber = button.textContent;
+			if (display.textContent == 0 && display.textContent.length == 1) {
+				display.textContent = enteredNumber;
+				if (firstNumber.boolean == true) {
+					theInput = enteredNumber;
+				} else if (firstNumber.boolean == false) {
+					theInput2 = enteredNumber;
+				}
+				console.log(display.textContent);
+			} else {
+				display.textContent += enteredNumber;
+				if (firstNumber.boolean == true) {
+					theInput += enteredNumber;
+				} else if (firstNumber.boolean == false) {
+					theInput2 += enteredNumber;
+				}
+				console.log(display.textContent);
 			}
-			console.log(display.textContent);
-		} else {
-			display.textContent += enteredNumber;
-			if (firstNumber.boolean == true) {
-				theInput += enteredNumber;
-			} else if (firstNumber.boolean == false) {
-				theInput2 += enteredNumber;
+			if (firstNumber.boolean == false && secondNumber.boolean == false) {
+				display.textContent = display.textContent.replace(
+					display.textContent,
+					enteredNumber
+				);
+				secondNumber.boolean = true;
 			}
-			console.log(display.textContent);
-		}
-		if (firstNumber.boolean == false && secondNumber.boolean == false) {
-			display.textContent = display.textContent.replace(
-				display.textContent,
-				enteredNumber
-			);
-			secondNumber.boolean = true;
 		}
 	});
 });
 
 zeroButton.addEventListener("click", () => {
 	if (display.textContent == 0 && display.textContent.length == 1) {
-	} else {
+	} else if (display.textContent.length < 13) {
 		display.textContent += 0;
 		if (firstNumber.boolean == true) {
 			theInput += 0;
@@ -99,7 +101,7 @@ zeroButton.addEventListener("click", () => {
 
 decimalPointButton.addEventListener("click", () => {
 	if (display.textContent.includes(".")) {
-	} else {
+	} else if (display.textContent.length < 13) {
 		display.textContent += ".";
 		if (firstNumber.boolean == true) {
 			theInput += ".";
