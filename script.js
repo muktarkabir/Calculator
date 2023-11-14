@@ -9,9 +9,12 @@ const plusButton = document.querySelector(".plus");
 const minusButton = document.querySelector(".minus");
 const timesButton = document.querySelector(".times");
 const divideButton = document.querySelector(".divide");
-const equalSignButton = document.querySelector(".equal-sign button");
+const equalSignButton = document.querySelector(".equal-sign > button");
+const test = document.querySelector("h2");
 
 let theInput = 0;
+
+let firstNumber, operand, secondNumber;
 
 clearButton.addEventListener("click", () => {
 	display.textContent = 0;
@@ -30,13 +33,13 @@ deleteButton.addEventListener("click", () => {
 
 numberDivButtons.forEach((button) => {
 	button.addEventListener("click", () => {
-		let enteredNum = button.textContent;
+		let enteredNumber = button.textContent;
 		if (display.textContent == 0 && display.textContent.length == 1) {
-			display.textContent = enteredNum;
-			theInput = enteredNum;
+			display.textContent = enteredNumber;
+			theInput = enteredNumber;
 		} else {
-			display.textContent += enteredNum;
-			theInput += enteredNum;
+			display.textContent += enteredNumber;
+			theInput += enteredNumber;
 		}
 	});
 });
@@ -45,12 +48,14 @@ zeroButton.addEventListener("click", () => {
 	if (display.textContent == 0 && display.textContent.length == 1) {
 	} else {
 		display.textContent += 0;
+		theInput += 0;
 	}
 });
+
 decimalPointButton.addEventListener("click", () => {
 	if (display.textContent.includes(".")) {
 	} else {
-		display.textContent += decimalPointButton.textContent;
+		display.textContent += ".";
 		theInput += ".";
 	}
 });
@@ -71,8 +76,27 @@ const multiplication = function (a, b) {
 	return a * b;
 };
 
-let firstNum, operand, secondNum;
-
-function operate(firstNum, operand, secondNum) {
-	return operand(firstNum, secondNum);
+function operate(firstNumber, operand, secondNumber) {
+	return operand(firstNumber, secondNumber);
 }
+
+plusButton.addEventListener("click", () => {
+	operand = addition;
+	console.log(operand == true);
+});
+
+minusButton.addEventListener("click", () => {
+	operand = subtraction;
+	console.log(operand == true);
+});
+
+timesButton.addEventListener("click", () => {
+	operand = multiplication;
+});
+
+divideButton.addEventListener("click", () => {
+	operand = division;
+});
+
+let results = operate(7, multiplication, 900);
+test.textContent = results.toString(16);
