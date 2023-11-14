@@ -37,7 +37,7 @@ clearButton.addEventListener("click", () => {
 });
 
 deleteButton.addEventListener("click", () => {
-	if (display.textContent.length == 1) {
+	if (display.textContent.length == 1 && display.textContent !== "0") {
 		display.textContent = 0;
 		theInput = 0;
 		theInput2 = 0;
