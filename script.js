@@ -12,31 +12,32 @@ const divideButton = document.querySelector(".divide");
 const equalSignButton = document.querySelector(".equal-sign > button");
 const test = document.querySelector("h2");
 
-let theInput = 0;
-let theInput2 = 0;
+let theInput = "";
+let theInput2 = "";
 
 let results = { output: 0, boolean: true };
 let firstNumber = { value: 0, boolean: true };
 let secondNumber = { value: 0, boolean: false };
-let operand;
+let operand = null;
 
 clearButton.addEventListener("click", () => {
-	display.textContent = 0;
-	theInput = 0;
-	theInput2 = 0;
+	display.textContent = "0";
+	theInput = "";
+	theInput2 = "";
 	results.output = 0;
 	results.boolean = true;
 	firstNumber.boolean = true;
 	secondNumber.boolean = false;
 	firstNumber.value = 0;
 	secondNumber.value = 0;
+	operand = null;
 });
 
 deleteButton.addEventListener("click", () => {
 	if (display.textContent.length == 1 && display.textContent !== "0") {
-		display.textContent = 0;
-		theInput = 0;
-		theInput2 = 0;
+		display.textContent = "0";
+		theInput = "";
+		theInput2 = "";
 	} else if (display.textContent.length > 1) {
 		display.textContent = display.textContent.slice(0, -1);
 		if (firstNumber.boolean == true) {
@@ -45,13 +46,28 @@ deleteButton.addEventListener("click", () => {
 			theInput2 = theInput2.slice(0, -1);
 		}
 	}
+	if (
+		display.textContent.includes("a") ||
+		(display.textContent.includes("i") && display.textContent.length > 1)
+	) {
+		display.textContent = "0";
+		theInput = "";
+		theInput2 = "";
+		results.output = 0;
+		results.boolean = true;
+		firstNumber.boolean = true;
+		secondNumber.boolean = false;
+		firstNumber.value = 0;
+		secondNumber.value = 0;
+		operand = null;
+	}
 });
 
 numberDivButtons.forEach((button) => {
 	button.addEventListener("click", () => {
 		if (display.textContent.length < 13) {
 			let enteredNumber = button.textContent;
-			if (display.textContent == 0 && display.textContent.length == 1) {
+			if (display.textContent == "0" && display.textContent.length == 1) {
 				display.textContent = enteredNumber;
 				if (firstNumber.boolean == true) {
 					theInput = enteredNumber;
@@ -78,16 +94,19 @@ numberDivButtons.forEach((button) => {
 });
 
 zeroButton.addEventListener("click", () => {
-	if (display.textContent == 0 && display.textContent.length == 1) {
+	if (display.textContent == "0" && display.textContent.length == 1) {
 	} else if (display.textContent.length < 13) {
-		display.textContent += 0;
+		display.textContent += "0";
 		if (firstNumber.boolean == true) {
-			theInput += 0;
+			theInput += "0";
 		} else if (secondNumber.boolean == true) {
-			theInput2 += 0;
+			theInput2 += "0";
 		}
 		if (firstNumber.boolean == false && secondNumber.boolean == false) {
-			display.textContent = display.textContent.replace(display.textContent, 0);
+			display.textContent = display.textContent.replace(
+				display.textContent,
+				"0"
+			);
 			secondNumber.boolean = true;
 		}
 	}
@@ -112,7 +131,12 @@ const subtraction = function (a, b) {
 	return a - b;
 };
 const division = function (a, b) {
-	return a / b;
+	if (b != 0) {
+		return a / b;
+	} else {
+		let errors = ["haha", "impossible", "i can't do it"];
+		return errors[Math.floor(Math.random() * 3)];
+	}
 };
 const multiplication = function (a, b) {
 	return a * b;
@@ -154,6 +178,9 @@ equalSignButton.addEventListener("click", () => {
 			displayed = displayed.slice(0, 13);
 		}
 		display.textContent = displayed;
+		if (typeof results.output == "string") {
+			return (results.output = 0);
+		}
 	}
 });
 
