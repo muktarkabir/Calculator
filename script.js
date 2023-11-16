@@ -1,8 +1,8 @@
 const display = document.querySelector(".input-output");
 const clearButton = document.querySelector(".clear");
 const deleteButton = document.querySelector(".delete");
-const numberDiv = document.querySelector(".numbers");
-const numberDivButtons = numberDiv.querySelectorAll("button");
+const numberContainer = document.querySelector(".numbers");
+const oneToNineButtons = numberContainer.querySelectorAll("button");
 const zeroButton = document.querySelector(".zero button");
 const decimalPointButton = document.querySelector(".decimal-point button");
 const plusButton = document.querySelector(".plus");
@@ -21,7 +21,7 @@ let secondNumber = { value: 0, boolean: false };
 let operand = null;
 let buttonsOn = true;
 
-clearButton.addEventListener("click", () => {
+function resetCalculator() {
 	display.textContent = "0";
 	theInput = "";
 	theInput2 = "";
@@ -33,7 +33,9 @@ clearButton.addEventListener("click", () => {
 	secondNumber.value = 0;
 	operand = null;
 	buttonsOn = true;
-});
+}
+
+clearButton.addEventListener("click", resetCalculator);
 
 deleteButton.addEventListener("click", () => {
 	if (
@@ -41,17 +43,7 @@ deleteButton.addEventListener("click", () => {
 		display.textContent.includes("a") ||
 		display.textContent.includes("i")
 	) {
-		display.textContent = "0";
-		theInput = "";
-		theInput2 = "";
-		results.output = 0;
-		results.boolean = true;
-		firstNumber.boolean = true;
-		secondNumber.boolean = false;
-		firstNumber.value = 0;
-		secondNumber.value = 0;
-		operand = null;
-		buttonsOn = true;
+		resetCalculator();
 	} else if (display.textContent.length > 1) {
 		display.textContent = display.textContent.slice(0, -1);
 		if (firstNumber.boolean == true) {
@@ -62,7 +54,7 @@ deleteButton.addEventListener("click", () => {
 	}
 });
 
-numberDivButtons.forEach((button) => {
+oneToNineButtons.forEach((button) => {
 	button.addEventListener("click", () => {
 		if (buttonsOn == true) {
 			if (display.textContent.length < 13) {
@@ -129,13 +121,13 @@ decimalPointButton.addEventListener("click", () => {
 	}
 });
 
-const addition = function (a, b) {
+const add = function (a, b) {
 	return a + b;
 };
-const subtraction = function (a, b) {
+const subtract = function (a, b) {
 	return a - b;
 };
-const division = function (a, b) {
+const divide = function (a, b) {
 	if (b != 0) {
 		return a / b;
 	} else {
@@ -143,62 +135,76 @@ const division = function (a, b) {
 		return errors[Math.floor(Math.random() * 3)];
 	}
 };
-const multiplication = function (a, b) {
+const multiply = function (a, b) {
 	return a * b;
 };
-function operate(a, operand, b) {
+const operate = function (a, operand, b) {
 	return operand(a, b);
-}
+};
 
 plusButton.addEventListener("click", () => {
 	if (buttonsOn == true) {
-		firstNumber.value = Number(theInput);
-		firstNumber.boolean = false;
-		operand = addition;
+		if (theInput !== "") {
+			firstNumber.value = Number(theInput);
+			firstNumber.boolean = false;
+			operand = add;
+		}
 	}
 });
 
 minusButton.addEventListener("click", () => {
 	if (buttonsOn == true) {
-		firstNumber.value = Number(theInput);
-		firstNumber.boolean = false;
-		operand = subtraction;
+		if (theInput !== "") {
+			firstNumber.value = Number(theInput);
+			firstNumber.boolean = false;
+			operand = subtract;
+		}
 	}
 });
 
 timesButton.addEventListener("click", () => {
 	if (buttonsOn == true) {
-		firstNumber.value = Number(theInput);
-		firstNumber.boolean = false;
-		operand = multiplication;
+		if (theInput !== "") {
+			firstNumber.value = Number(theInput);
+			firstNumber.boolean = false;
+			operand = multiply;
+		}
 	}
 });
 
 divideButton.addEventListener("click", () => {
 	if (buttonsOn == true) {
-		firstNumber.value = Number(theInput);
-		firstNumber.boolean = false;
-		operand = division;
+		if (theInput !== "") {
+			firstNumber.value = Number(theInput);
+			firstNumber.boolean = false;
+			operand = divide;
+		}
 	}
 });
 
 equalSignButton.addEventListener("click", () => {
 	if (buttonsOn == true) {
-		if (firstNumber.boolean == false && secondNumber.boolean == true) {
-			secondNumber.value = Number(theInput2);
-			results.output = operate(firstNumber.value, operand, secondNumber.value);
-			let displayed = results.output.toString();
-			if (displayed.length > 13) {
-				displayed = displayed.slice(0, 13);
-			}
-			display.textContent = displayed;
+		if (theInput !== "") {
+			if (firstNumber.boolean == false && secondNumber.boolean == true) {
+				secondNumber.value = Number(theInput2);
+				results.output = operate(
+					firstNumber.value,
+					operand,
+					secondNumber.value
+				);
+				let displayed = results.output.toString();
+				if (displayed.length > 13) {
+					displayed = displayed.slice(0, 13);
+				}
+				display.textContent = displayed;
 
-			if (displayed.includes("a") || displayed.includes("i")) {
-				buttonsOn = false;
+				if (displayed.includes("a") || displayed.includes("i")) {
+					buttonsOn = false;
+				}
 			}
 		}
 	}
 });
 
-let testresults = operate(7, multiplication, 900);
+let testresults = operate(7, multiply, 900);
 test.textContent = testresults.toString(16);
