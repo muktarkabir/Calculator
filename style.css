@@ -70,6 +70,9 @@ main {
 .clear-delete > button:active {
 	background-color: rgb(216, 216, 214);
 }
+.clear-delete > button:hover {
+	background-color: rgb(216, 216, 214);
+}
 .clear-delete > .c {
 	color: red;
 	font-size: 25px;
@@ -102,6 +105,9 @@ main {
 .numbers > button:active {
 	background-color: rgb(216, 216, 214);
 }
+.numbers > button:hover {
+	background-color: rgb(216, 216, 214);
+}
 
 .symbols {
 	height: 240px;
@@ -120,6 +126,9 @@ main {
 .math-symbol:active {
 	background-color: rgb(216, 216, 214);
 }
+.math-symbol:hover {
+	background-color: rgb(216, 216, 214);
+}
 
 .annoying {
 	width: 380px;
@@ -131,6 +140,9 @@ main {
 	font-size: 22px;
 }
 .annoying button:active {
+	background-color: rgb(216, 216, 214);
+}
+.annoying button:hover {
 	background-color: rgb(216, 216, 214);
 }
 
