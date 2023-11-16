@@ -73,12 +73,12 @@ main {
 .clear-delete > button:hover {
 	background-color: rgb(216, 216, 214);
 }
-.clear-delete > .c {
+.clear-delete > .clear {
 	color: red;
 	font-size: 25px;
 	font-weight: bold;
 }
-.clear-delete > .d {
+.clear-delete > .delete {
 	font-size: 25px;
 	color: blue;
 	font-weight: bold;

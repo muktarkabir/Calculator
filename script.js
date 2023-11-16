@@ -1,6 +1,6 @@
 const display = document.querySelector(".input-output");
-const clearButton = document.querySelector(".c");
-const deleteButton = document.querySelector(".d");
+const clearButton = document.querySelector(".clear");
+const deleteButton = document.querySelector(".delete");
 const numberDiv = document.querySelector(".numbers");
 const numberDivButtons = numberDiv.querySelectorAll("button");
 const zeroButton = document.querySelector(".zero button");
