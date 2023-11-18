@@ -15,24 +15,23 @@ const test = document.querySelector("h2");
 let theInput = "";
 let theInput2 = "";
 
-let results = { output: 0, boolean: true };
-let firstNumber = { value: 0, boolean: true };
-let secondNumber = { value: 0, boolean: false };
-let operand = null;
 let buttonsOn = true;
+let firstNumber = { value: null, boolean: true };
+let operand = null;
+let results = { output: null };
+let secondNumber = { value: null, boolean: false };
 
 function resetCalculator() {
 	display.textContent = "0";
 	theInput = "";
 	theInput2 = "";
-	results.output = 0;
-	results.boolean = true;
-	firstNumber.boolean = true;
-	secondNumber.boolean = false;
-	firstNumber.value = 0;
-	secondNumber.value = 0;
-	operand = null;
 	buttonsOn = true;
+	firstNumber.value = null;
+	firstNumber.boolean = true;
+	operand = null;
+	secondNumber.value = null;
+	secondNumber.boolean = false;
+	results.output = null;
 }
 
 clearButton.addEventListener("click", resetCalculator);
@@ -44,7 +43,7 @@ deleteButton.addEventListener("click", () => {
 		display.textContent.includes("i")
 	) {
 		resetCalculator();
-	} else if (display.textContent.length > 1) {
+	} else if (display.textContent.length > 1 && buttonsOn == true) {
 		display.textContent = display.textContent.slice(0, -1);
 		if (firstNumber.boolean == true) {
 			theInput = theInput.slice(0, -1);
@@ -93,7 +92,7 @@ zeroButton.addEventListener("click", () => {
 			display.textContent += "0";
 			if (firstNumber.boolean == true) {
 				theInput += "0";
-			} else if (secondNumber.boolean == true) {
+			} else if (firstNumber.boolean == false) {
 				theInput2 += "0";
 			}
 			if (firstNumber.boolean == false && secondNumber.boolean == false) {
@@ -114,7 +113,7 @@ decimalPointButton.addEventListener("click", () => {
 			display.textContent += ".";
 			if (firstNumber.boolean == true) {
 				theInput += ".";
-			} else if (secondNumber.boolean == true) {
+			} else if (firstNumber.boolean == false) {
 				theInput2 += ".";
 			}
 		}
@@ -142,12 +141,36 @@ const operate = function (a, operand, b) {
 	return operand(a, b);
 };
 
+function checkDecimalPlaces(number) {
+	let numberString = number.toString();
+	if (numberString.indexOf(".") !== -1) {
+		let decimalIndex = numberString.indexOf(".");
+		let decimalPart = numberString.substring(decimalIndex + 1);
+		if (decimalPart.length > 4) {
+			return Number(number.toFixed(4));
+		} else if (decimalPart.length < 4) {
+			return number;
+		}
+	} else {
+		return number;
+	}
+}
+
 plusButton.addEventListener("click", () => {
 	if (buttonsOn == true) {
 		if (theInput !== "") {
 			firstNumber.value = Number(theInput);
 			firstNumber.boolean = false;
 			operand = add;
+		}
+	}
+	if (buttonsOn == false) {
+		if (theInput !== "") {
+			firstNumber.value = Number(theInput);
+			firstNumber.boolean = false;
+			operand = add;
+			buttonsOn = true;
+			console.log("yass");
 		}
 	}
 });
@@ -160,6 +183,15 @@ minusButton.addEventListener("click", () => {
 			operand = subtract;
 		}
 	}
+	if (buttonsOn == false) {
+		if (theInput !== "") {
+			firstNumber.value = Number(theInput);
+			firstNumber.boolean = false;
+			operand = subtract;
+			buttonsOn = true;
+			console.log("yass");
+		}
+	}
 });
 
 timesButton.addEventListener("click", () => {
@@ -168,6 +200,15 @@ timesButton.addEventListener("click", () => {
 			firstNumber.value = Number(theInput);
 			firstNumber.boolean = false;
 			operand = multiply;
+		}
+	}
+	if (buttonsOn == false) {
+		if (theInput !== "") {
+			firstNumber.value = Number(theInput);
+			firstNumber.boolean = false;
+			operand = multiply;
+			buttonsOn = true;
+			console.log("yass");
 		}
 	}
 });
@@ -180,6 +221,15 @@ divideButton.addEventListener("click", () => {
 			operand = divide;
 		}
 	}
+	if (buttonsOn == false) {
+		if (theInput !== "") {
+			firstNumber.value = Number(theInput);
+			firstNumber.boolean = false;
+			operand = divide;
+			buttonsOn = true;
+			console.log("yass");
+		}
+	}
 });
 
 equalSignButton.addEventListener("click", () => {
@@ -187,17 +237,21 @@ equalSignButton.addEventListener("click", () => {
 		if (theInput !== "") {
 			if (firstNumber.boolean == false && secondNumber.boolean == true) {
 				secondNumber.value = Number(theInput2);
-				results.output = operate(
-					firstNumber.value,
-					operand,
-					secondNumber.value
+				results.output = checkDecimalPlaces(
+					operate(firstNumber.value, operand, secondNumber.value)
 				);
 				let displayed = results.output.toString();
 				if (displayed.length > 13) {
 					displayed = displayed.slice(0, 13);
 				}
 				display.textContent = displayed;
-
+				buttonsOn = false;
+				theInput = display.textContent;
+				theInput2 = "";
+				firstNumber.value = null;
+				operand = null;
+				secondNumber.boolean = false;
+				secondNumber.value = null;
 				if (displayed.includes("a") || displayed.includes("i")) {
 					buttonsOn = false;
 				}
