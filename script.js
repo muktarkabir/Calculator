@@ -172,7 +172,6 @@ plusButton.addEventListener("click", () => {
 			firstNumber.boolean = false;
 			operand = add;
 			buttonsOn = true;
-			console.log("yass");
 		}
 	}
 });
@@ -191,7 +190,6 @@ minusButton.addEventListener("click", () => {
 			firstNumber.boolean = false;
 			operand = subtract;
 			buttonsOn = true;
-			console.log("yass");
 		}
 	}
 });
@@ -210,7 +208,6 @@ timesButton.addEventListener("click", () => {
 			firstNumber.boolean = false;
 			operand = multiply;
 			buttonsOn = true;
-			console.log("yass");
 		}
 	}
 });
@@ -229,7 +226,6 @@ divideButton.addEventListener("click", () => {
 			firstNumber.boolean = false;
 			operand = divide;
 			buttonsOn = true;
-			console.log("yass");
 		}
 	}
 });
@@ -243,9 +239,10 @@ equalSignButton.addEventListener("click", () => {
 					operate(firstNumber.value, operand, secondNumber.value)
 				);
 				let displayed = results.toString();
-				// if (displayed.length > 13) {
-				// 	displayed = displayed.slice(0, 13);
-				// }
+				if (displayed.length > 13) {
+					displayed = "in console";
+					console.log(results);
+				}
 				display.textContent = displayed;
 				buttonsOn = false;
 				theInput = display.textContent;
