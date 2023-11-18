@@ -18,8 +18,9 @@ let theInput2 = "";
 let buttonsOn = true;
 let firstNumber = { value: null, boolean: true };
 let operand = null;
-let results = { output: null };
 let secondNumber = { value: null, boolean: false };
+let results = null;
+let validResults = true;
 
 function resetCalculator() {
 	display.textContent = "0";
@@ -31,7 +32,8 @@ function resetCalculator() {
 	operand = null;
 	secondNumber.value = null;
 	secondNumber.boolean = false;
-	results.output = null;
+	results = null;
+	validResults = true;
 }
 
 clearButton.addEventListener("click", resetCalculator);
@@ -164,7 +166,7 @@ plusButton.addEventListener("click", () => {
 			operand = add;
 		}
 	}
-	if (buttonsOn == false) {
+	if (buttonsOn == false && validResults == true) {
 		if (theInput !== "") {
 			firstNumber.value = Number(theInput);
 			firstNumber.boolean = false;
@@ -183,7 +185,7 @@ minusButton.addEventListener("click", () => {
 			operand = subtract;
 		}
 	}
-	if (buttonsOn == false) {
+	if (buttonsOn == false && validResults == true) {
 		if (theInput !== "") {
 			firstNumber.value = Number(theInput);
 			firstNumber.boolean = false;
@@ -202,7 +204,7 @@ timesButton.addEventListener("click", () => {
 			operand = multiply;
 		}
 	}
-	if (buttonsOn == false) {
+	if (buttonsOn == false && validResults == true) {
 		if (theInput !== "") {
 			firstNumber.value = Number(theInput);
 			firstNumber.boolean = false;
@@ -221,7 +223,7 @@ divideButton.addEventListener("click", () => {
 			operand = divide;
 		}
 	}
-	if (buttonsOn == false) {
+	if (buttonsOn == false && validResults == true) {
 		if (theInput !== "") {
 			firstNumber.value = Number(theInput);
 			firstNumber.boolean = false;
@@ -237,13 +239,13 @@ equalSignButton.addEventListener("click", () => {
 		if (theInput !== "") {
 			if (firstNumber.boolean == false && secondNumber.boolean == true) {
 				secondNumber.value = Number(theInput2);
-				results.output = checkDecimalPlaces(
+				results = checkDecimalPlaces(
 					operate(firstNumber.value, operand, secondNumber.value)
 				);
-				let displayed = results.output.toString();
-				if (displayed.length > 13) {
-					displayed = displayed.slice(0, 13);
-				}
+				let displayed = results.toString();
+				// if (displayed.length > 13) {
+				// 	displayed = displayed.slice(0, 13);
+				// }
 				display.textContent = displayed;
 				buttonsOn = false;
 				theInput = display.textContent;
@@ -254,6 +256,7 @@ equalSignButton.addEventListener("click", () => {
 				secondNumber.value = null;
 				if (displayed.includes("a") || displayed.includes("i")) {
 					buttonsOn = false;
+					validResults = false;
 				}
 			}
 		}
