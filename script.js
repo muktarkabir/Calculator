@@ -60,7 +60,7 @@ deleteButton.addEventListener("click", () => {
 oneToNineButtons.forEach((button) => {
 	button.addEventListener("click", () => {
 		if (buttonsOn == true) {
-			if (display.textContent.length < 13) {
+			if (display.textContent.length < 15) {
 				let enteredNumber = button.textContent;
 				if (display.textContent == "0" && display.textContent.length == 1) {
 					display.textContent = enteredNumber;
@@ -92,7 +92,7 @@ oneToNineButtons.forEach((button) => {
 zeroButton.addEventListener("click", () => {
 	if (buttonsOn == true) {
 		if (display.textContent == "0" && display.textContent.length == 1) {
-		} else if (display.textContent.length < 13) {
+		} else if (display.textContent.length < 15) {
 			display.textContent += "0";
 			if (firstNumber.boolean == true) {
 				theInput += "0";
@@ -113,7 +113,7 @@ zeroButton.addEventListener("click", () => {
 decimalPointButton.addEventListener("click", () => {
 	if (buttonsOn == true) {
 		if (display.textContent.includes(".")) {
-		} else if (display.textContent.length < 13) {
+		} else if (display.textContent.length < 15) {
 			display.textContent += ".";
 			if (firstNumber.boolean == true) {
 				theInput += ".";
@@ -269,7 +269,7 @@ equalSignButton.addEventListener("click", () => {
 					operate(firstNumber.value, operand, secondNumber.value)
 				);
 				displayed = results.toString();
-				if (displayed.length > 13) {
+				if (displayed.length > 15) {
 					displayed = "in console";
 					console.log(results);
 				}
@@ -316,9 +316,9 @@ function checkDecimalPlaces(number) {
 	if (numberString.indexOf(".") !== -1) {
 		let decimalIndex = numberString.indexOf(".");
 		let decimalPart = numberString.substring(decimalIndex + 1);
-		if (decimalPart.length > 4) {
-			return Number(number.toFixed(4));
-		} else if (decimalPart.length < 4) {
+		if (decimalPart.length > 6) {
+			return Number(number.toFixed(6));
+		} else if (decimalPart.length < 6) {
 			return number;
 		}
 	} else {
