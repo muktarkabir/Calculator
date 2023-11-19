@@ -1,3 +1,8 @@
+@font-face {
+	font-family: calculator;
+	src: url(digital-7.ttf);
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -33,12 +38,11 @@ main {
 	border-radius: 10px;
 	display: flex;
 	justify-content: flex-end;
-	align-items: end;
+	align-items: center;
 	font-size: 50px;
 	padding-right: 8px;
-	overflow: hidden;
-	font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-		"Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+	/* overflow: hidden; */
+	font-family: calculator;
 	border: 1px solid blue;
 }
 .controls {
