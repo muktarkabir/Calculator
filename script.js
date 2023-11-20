@@ -131,6 +131,26 @@ plusButton.addEventListener("click", () => {
 			firstNumber.boolean = false;
 			operand = add;
 		}
+		if (theInput2 !== "" && operand !== null) {
+			let resultString = checkDecimalPlaces(
+				operate(+theInput, operand, +theInput2)
+			);
+
+			display.textContent = display.textContent.replace(
+				display.textContent,
+				resultString
+			);
+			theInput = resultString.toString();
+			theInput2 = "";
+			operand = add;
+			firstNumber.boolean = false;
+			secondNumber.boolean = false;
+			firstNumber.value = Number(theInput);
+			if (resultString.includes("a") || resultString.includes("i")) {
+				buttonsOn = false;
+				validResults = false;
+			}
+		}
 	}
 	if (buttonsOn == false && validResults == true) {
 		if (theInput !== "") {
@@ -139,22 +159,6 @@ plusButton.addEventListener("click", () => {
 			operand = add;
 			buttonsOn = true;
 		}
-	}
-	if (theInput2 !== "" && operand !== null) {
-		let resultString = checkDecimalPlaces(
-			operate(+theInput, operand, +theInput2)
-		);
-
-		display.textContent = display.textContent.replace(
-			display.textContent,
-			resultString
-		);
-		theInput = resultString.toString();
-		theInput2 = "";
-		operand = add;
-		firstNumber.boolean = false;
-		secondNumber.boolean = false;
-		firstNumber.value = Number(theInput);
 	}
 });
 
@@ -165,6 +169,26 @@ minusButton.addEventListener("click", () => {
 			firstNumber.boolean = false;
 			operand = subtract;
 		}
+		if (theInput2 !== "" && operand !== null) {
+			let resultString = checkDecimalPlaces(
+				operate(+theInput, operand, +theInput2)
+			);
+
+			display.textContent = display.textContent.replace(
+				display.textContent,
+				resultString
+			);
+			theInput = resultString.toString();
+			theInput2 = "";
+			operand = subtract;
+			firstNumber.boolean = false;
+			secondNumber.boolean = false;
+			firstNumber.value = Number(theInput);
+			if (resultString.includes("a") || resultString.includes("i")) {
+				buttonsOn = false;
+				validResults = false;
+			}
+		}
 	}
 	if (buttonsOn == false && validResults == true) {
 		if (theInput !== "") {
@@ -173,22 +197,6 @@ minusButton.addEventListener("click", () => {
 			operand = subtract;
 			buttonsOn = true;
 		}
-	}
-	if (theInput2 !== "" && operand !== null) {
-		let resultString = checkDecimalPlaces(
-			operate(+theInput, operand, +theInput2)
-		);
-
-		display.textContent = display.textContent.replace(
-			display.textContent,
-			resultString
-		);
-		theInput = resultString.toString();
-		theInput2 = "";
-		operand = subtract;
-		firstNumber.boolean = false;
-		secondNumber.boolean = false;
-		firstNumber.value = Number(theInput);
 	}
 });
 
@@ -199,6 +207,26 @@ timesButton.addEventListener("click", () => {
 			firstNumber.boolean = false;
 			operand = multiply;
 		}
+		if (theInput2 !== "" && operand !== null) {
+			let resultString = checkDecimalPlaces(
+				operate(+theInput, operand, +theInput2)
+			);
+
+			display.textContent = display.textContent.replace(
+				display.textContent,
+				resultString
+			);
+			theInput = resultString.toString();
+			theInput2 = "";
+			operand = multiply;
+			firstNumber.boolean = false;
+			secondNumber.boolean = false;
+			firstNumber.value = Number(theInput);
+			if (resultString.includes("a") || resultString.includes("i")) {
+				buttonsOn = false;
+				validResults = false;
+			}
+		}
 	}
 	if (buttonsOn == false && validResults == true) {
 		if (theInput !== "") {
@@ -207,22 +235,6 @@ timesButton.addEventListener("click", () => {
 			operand = multiply;
 			buttonsOn = true;
 		}
-	}
-	if (theInput2 !== "" && operand !== null) {
-		let resultString = checkDecimalPlaces(
-			operate(+theInput, operand, +theInput2)
-		);
-
-		display.textContent = display.textContent.replace(
-			display.textContent,
-			resultString
-		);
-		theInput = resultString.toString();
-		theInput2 = "";
-		operand = multiply;
-		firstNumber.boolean = false;
-		secondNumber.boolean = false;
-		firstNumber.value = Number(theInput);
 	}
 });
 
@@ -233,6 +245,26 @@ divideButton.addEventListener("click", () => {
 			firstNumber.boolean = false;
 			operand = divide;
 		}
+		if (theInput2 !== "" && operand !== null) {
+			let resultString = checkDecimalPlaces(
+				operate(+theInput, operand, +theInput2)
+			);
+
+			display.textContent = display.textContent.replace(
+				display.textContent,
+				resultString
+			);
+			theInput = resultString.toString();
+			theInput2 = "";
+			operand = divide;
+			firstNumber.boolean = false;
+			secondNumber.boolean = false;
+			firstNumber.value = Number(theInput);
+			if (resultString.includes("a") || resultString.includes("i")) {
+				buttonsOn = false;
+				validResults = false;
+			}
+		}
 	}
 	if (buttonsOn == false && validResults == true) {
 		if (theInput !== "") {
@@ -241,22 +273,6 @@ divideButton.addEventListener("click", () => {
 			operand = divide;
 			buttonsOn = true;
 		}
-	}
-	if (theInput2 !== "" && operand !== null) {
-		let resultString = checkDecimalPlaces(
-			operate(+theInput, operand, +theInput2)
-		);
-
-		display.textContent = display.textContent.replace(
-			display.textContent,
-			resultString
-		);
-		theInput = resultString.toString();
-		theInput2 = "";
-		operand = divide;
-		firstNumber.boolean = false;
-		secondNumber.boolean = false;
-		firstNumber.value = Number(theInput);
 	}
 });
 
