@@ -92,6 +92,7 @@ oneToNineButtons.forEach((button) => {
 zeroButton.addEventListener("click", () => {
 	if (buttonsOn == true) {
 		if (display.textContent == "0" && display.textContent.length == 1) {
+			theInput = "0";
 		} else if (display.textContent.length < 15) {
 			display.textContent += "0";
 			if (firstNumber.boolean == true) {
